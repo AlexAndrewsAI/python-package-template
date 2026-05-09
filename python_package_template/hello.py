@@ -23,4 +23,13 @@ class HelloWorld:
         """
         if config is None:
             config = Config()
-        logging.info(f"hello {config.name}")
+        self.config = config
+
+    def greet(self) -> str:
+        """Generate a greeting message.
+
+        Returns:
+            A greeting string with the configured name.
+        """
+        logging.info(f"hello {self.config.name}")
+        return f"Hello, {self.config.name}!"
