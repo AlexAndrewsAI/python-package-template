@@ -3,6 +3,8 @@
 Provides a simple greeting class that uses configuration.
 """
 
+import logging
+
 from python_package_template.config import Config
 
 
@@ -21,4 +23,4 @@ class HelloWorld:
         """
         if config is None:
             config = Config()
-        print(f"hello {config.name}")
+        logging.info(f"hello {config.name}")
