@@ -23,6 +23,7 @@ classifiers = [
 dependencies = [
     "mypy>=1.14.1",
     "pydantic>=2.0",
+    "typer>=0.12.0",
 ]
 
 [project.optional-dependencies]
@@ -31,6 +32,9 @@ dev = [
     "ruff",
     "mypy",
 ]
+
+[project.scripts]
+hello-world = "python_package_template.cli:app"
 
 [project.urls]
 Homepage = "https://github.com/yourusername/python-package-template"
