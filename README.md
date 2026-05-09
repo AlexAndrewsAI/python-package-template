@@ -19,7 +19,7 @@ This package is intentionally simple to provide a clean starting point for your 
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - [uv](https://github.com/astral-sh/uv) package manager
 
 ### Setup
@@ -38,10 +38,15 @@ uv sync
 
 ```python
 from python_package_template.hello import HelloWorld
-from python_package_template.config import Config   
+from python_package_template.config import Config
 
-__version__ = "0.1.0"
-__all__ = ["HelloWorld", "Config"]
+# Create with default name
+hello = HelloWorld()
+print(hello.greet())  # Output: Hello, World!
+
+# Create with custom name
+hello = HelloWorld(Config(name="Alice"))
+print(hello.greet())  # Output: Hello, Alice!
 ```
 
 ### Configuration
@@ -60,6 +65,25 @@ config = Config(name="Alice")
 # Access the name
 print(config.name)  # Output: Alice
 ```
+
+### Command Line Interface
+
+The package includes a CLI tool built with **typer**:
+
+```bash
+# Run the CLI with default name
+uv run python -m python_package_template.cli hello
+
+# Greet a specific name
+uv run python -m python_package_template.cli hello --name Alice
+
+# Show help
+uv run python -m python_package_template.cli hello --help
+```
+
+The CLI supports the following options:
+- `--name, -n TEXT`: Name to greet (default: World)
+- `--help, -h`: Show help message
 
 ## Development
 
@@ -104,8 +128,9 @@ python-package-template/
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md
-├── python_package_template/     
+├── python_package_template/
 │   ├── __init__.py
+│   ├── cli.py
 │   ├── config.py
 │   └── hello.py
 └── tests/

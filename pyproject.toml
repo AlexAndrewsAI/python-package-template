@@ -3,7 +3,7 @@ name = "python-package-template"
 version = "0.1.0"
 description = "A simple package using pydantic"
 readme = "README.md"
-requires-python = ">=3.10"  # Changed from >=3.8
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "AlexAndrewsAI", email = "alex.andrews.ai@protonmail.com"}
@@ -21,8 +21,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "mypy>=1.14.1",
     "pydantic>=2.0",
+    "typer>=0.12.0",
 ]
 
 [project.optional-dependencies]
@@ -32,22 +32,21 @@ dev = [
     "mypy",
 ]
 
+[project.scripts]
+hello-world = "python_package_template.cli:app"
+
 [project.urls]
-Homepage = "https://github.com/yourusername/python-package-template"
-Repository = "https://github.com/yourusername/python-package-template.git"
-Documentation = "https://github.com/yourusername/python-package-template#readme"
+Homepage = "https://github.com/AlexAndrewsAI/python-package-template"
+Repository = "https://github.com/AlexAndrewsAI/python-package-template.git"
+Documentation = "https://github.com/AlexAndrewsAI/python-package-template#readme"
 
 [tool.uv]
-dev-dependencies = [
-    "pytest>=7.0",
-    "ruff",
-    "mypy",
-]
 
 [tool.ruff]
 line-length = 88
-target-version = "py38"
-select = ["E", "F", "W", "I"]
+target-version = "py310"
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "C4", "UP", "ARG", "RUF", "SIM"]
 
 [tool.mypy]
 python_version = "3.10"
