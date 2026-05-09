@@ -33,6 +33,5 @@ def hello(
     HelloWorld(config)
     typer.echo(f"Hello, {name}!")
 
-
 if __name__ == "__main__":
     app()

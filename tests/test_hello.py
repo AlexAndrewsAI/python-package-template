@@ -1,26 +1,32 @@
 """Tests for the hello module.
 """
 
+import logging
+
 from python_package_template import Config, HelloWorld
 
 
-def test_default_name(capsys):
+def test_default_name(caplog):
     """Test HelloWorld with default name.
 
     Args:
-        capsys: Pytest fixture for capturing stdout/stderr.
+        caplog: Pytest fixture for capturing log output.
     """
+    caplog.set_level(logging.INFO)
     HelloWorld()
-    captured = capsys.readouterr()
-    assert captured.out == "hello World\n"
+    assert len(caplog.records) == 1
+    assert caplog.records[0].message == "hello World"
+    assert caplog.records[0].levelname == "INFO"
 
 
-def test_custom_name(capsys):
+def test_custom_name(caplog):
     """Test HelloWorld with custom name.
 
     Args:
-        capsys: Pytest fixture for capturing stdout/stderr.
+        caplog: Pytest fixture for capturing log output.
     """
+    caplog.set_level(logging.INFO)
     HelloWorld(Config(name="Alice"))
-    captured = capsys.readouterr()
-    assert captured.out == "hello Alice\n"
+    assert len(caplog.records) == 1
+    assert caplog.records[0].message == "hello Alice"
+    assert caplog.records[0].levelname == "INFO"
