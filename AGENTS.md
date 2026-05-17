@@ -1,0 +1,11 @@
+- Always run python from this repo's .venv
+- run `uv venv` if the `.venv` does not exist
+- Run `python3` not `python`
+- Do not access files outside of this repo's parent (`./..`) without express permission. You may access files in the system `PATH`
+- If you actually run KeePass is will prompt for password in terminal. Don't use this for pytest.
+- If you run a `borg` command it will prompt for password in terminal. Don't use for pytest.
+- To run tests make sure to:
+    - activate .venv
+    - `uv sync --dev`
+- Do not include absolute paths relating to this repository
+    - Instead make paths relative to repo root
