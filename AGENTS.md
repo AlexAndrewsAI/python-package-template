@@ -24,7 +24,8 @@ This project is a modern Python package template emphasizing best practices: `uv
 - **Logging:** NEVER use `print()` for status or debugging. Use the standard `logging` library.
 - **Dependencies:** Use `uv add <package>` or `uv remove <package>` to manage dependencies. Do NOT edit `pyproject.toml` manually unless fixing configuration.
 - **Testing:** EVERY code change or new feature MUST include corresponding tests in the `tests/` directory. Ensure `uv run pytest` passes before finishing.
-- **Code Reviews:** When performing a thorough code review, always dump the findings, strengths, and recommended improvements into `./REVIEW.md`.
+- **Git Commits:** NEVER stage or commit changes unless explicitly requested by the user.
+- **Code Reviews:** When asked to perform a code review, do NOT modify any code. Focus strictly on analysis and recording findings in `./REVIEW.md`.
 - **Documentation:** Use Google-style docstrings for all public modules, classes, and functions.
 
 ## Workflow Commands
