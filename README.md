@@ -156,7 +156,7 @@ python-package-template/
 - ✅ **Configuration**: Externalized config using pydantic BaseModel
 - ✅ **Linting**: Code quality checks with ruff
 - ✅ **Dependency management**: Explicit dependencies in pyproject.toml
-- ✅ **Python versions**: Supports Python 3.8+
+- ✅ **Python versions**: Supports Python 3.10+
 
 ## License
 

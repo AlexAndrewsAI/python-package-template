@@ -3,10 +3,12 @@
 
 import logging
 
+import pytest
+
 from python_package_template import Config, HelloWorld
 
 
-def test_default_name(caplog):
+def test_default_name(caplog: pytest.LogCaptureFixture) -> None:
     """Test HelloWorld with default name.
 
     Args:
@@ -21,7 +23,7 @@ def test_default_name(caplog):
     assert caplog.records[0].levelname == "INFO"
 
 
-def test_custom_name(caplog):
+def test_custom_name(caplog: pytest.LogCaptureFixture) -> None:
     """Test HelloWorld with custom name.
 
     Args:

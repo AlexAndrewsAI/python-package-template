@@ -5,10 +5,33 @@ Provides a typer-based CLI for the package.
 
 import typer
 
+from python_package_template import __version__
 from python_package_template.config import Config
 from python_package_template.hello import HelloWorld
 
 app = typer.Typer(help="Python package template CLI")
+
+
+def version_callback(value: bool) -> None:
+    """Callback for the version flag."""
+    if value:
+        typer.echo(f"python-package-template version: {__version__}")
+        raise typer.Exit()
+
+
+@app.callback()
+def main(
+    version: bool | None = typer.Option(
+        None,
+        "--version",
+        "-V",
+        callback=version_callback,
+        is_eager=True,
+        help="Show the version and exit.",
+    ),
+) -> None:
+    """Python package template CLI."""
+    pass
 
 
 @app.command()
