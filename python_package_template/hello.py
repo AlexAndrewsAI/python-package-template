@@ -14,7 +14,7 @@ class HelloWorld:
     Greets a name specified in the configuration.
     """
 
-    def __init__(self, config: Config | None = None):
+    def __init__(self, config: Config | None = None) -> None:
         """Initialize the HelloWorld instance.
 
         Args:
