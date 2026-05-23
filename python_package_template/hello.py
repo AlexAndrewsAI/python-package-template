@@ -20,6 +20,7 @@ class HelloWorld:
         Args:
             config: Optional configuration object. If not provided,
                    a default Config instance will be created.
+
         """
         if config is None:
             config = Config()
@@ -30,6 +31,7 @@ class HelloWorld:
 
         Returns:
             A greeting string with the configured name.
+
         """
         logging.info(f"hello {self.config.name}")
         return f"Hello, {self.config.name}!"

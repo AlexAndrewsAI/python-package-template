@@ -14,6 +14,7 @@ def test_default_name(caplog: pytest.LogCaptureFixture) -> None:
 
     Args:
         caplog: Pytest fixture for capturing log output.
+
     """
     caplog.set_level(logging.INFO)
     hello_world = HelloWorld()
@@ -29,6 +30,7 @@ def test_custom_name(caplog: pytest.LogCaptureFixture) -> None:
 
     Args:
         caplog: Pytest fixture for capturing log output.
+
     """
     caplog.set_level(logging.INFO)
     hello_world = HelloWorld(Config(name="Alice"))
