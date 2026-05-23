@@ -33,5 +33,5 @@ class HelloWorld:
             A greeting string with the configured name.
 
         """
-        logging.info(f"hello {self.config.name}")
+        logging.info("hello %s", self.config.name)
         return f"Hello, {self.config.name}!"

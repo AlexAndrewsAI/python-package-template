@@ -61,6 +61,7 @@ select = [
     "S",   # flake8-bandit (security checks)
     "B",   # flake8-bugbear (common bugs)
     "I",   # isort (import sorting)
+    "G",   # flake8-logging-format (logging format)
     "C4",  # flake8-comprehensions (comprehension optimizations)
     "PT",  # flake8-pytest-style (pytest conventions)
     "UP",  # pyupgrade (modernize Python syntax)
