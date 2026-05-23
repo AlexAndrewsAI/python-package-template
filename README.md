@@ -42,11 +42,11 @@ from python_package_template.config import Config
 
 # Create with default name
 hello = HelloWorld()
-print(hello.greet())  # Output: Hello, World!
+greeting = hello.greet() # Hello, World!
 
 # Create with custom name
 hello = HelloWorld(Config(name="Alice"))
-print(hello.greet())  # Output: Hello, Alice!
+personal_greeting = hello.greet() # Hello, Alice!
 ```
 
 ### Configuration
@@ -61,9 +61,6 @@ config = Config()
 
 # Create with custom name
 config = Config(name="Alice")
-
-# Access the name
-print(config.name)  # Output: Alice
 ```
 
 ### Command Line Interface
