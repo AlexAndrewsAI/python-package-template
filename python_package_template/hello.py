@@ -7,6 +7,8 @@ import logging
 
 from python_package_template.config import Config
 
+logger = logging.getLogger(__name__)
+
 
 class HelloWorld:
     """A simple greeting class.
@@ -33,5 +35,5 @@ class HelloWorld:
             A greeting string with the configured name.
 
         """
-        logging.info("hello %s", self.config.name)
+        logger.info("hello %s", self.config.name)
         return f"Hello, {self.config.name}!"
