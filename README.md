@@ -71,6 +71,9 @@ print(config.name)  # Output: Alice
 The package includes a CLI tool built with **typer**:
 
 ```bash
+# Show version
+uv run hello-world --version
+
 # Run the CLI with default name
 uv run hello-world hello
 
@@ -79,15 +82,7 @@ uv run hello-world hello --name Alice
 
 # Show help
 uv run hello-world hello --help
-
-# Show version
-uv run hello-world hello --version
 ```
-
-The CLI supports the following options:
-- `--name, -n TEXT`: Name to greet (default: World)
-- `--version, -V`: Show the version and exit
-- `--help, -h`: Show help message
 
 ## Development
 
