@@ -1,6 +1,6 @@
 [project]
 name = "python-package-template"
-dynamic = ["version"]
+dynamic = ["version"]  # Version is read from __init__.py by hatch
 description = "A simple package using pydantic"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -25,7 +25,7 @@ dependencies = [
     "typer>=0.12.0",
 ]
 
-[dependency-groups]
+[dependency-groups]  # uv-specific feature for grouping optional dependencies
 dev = [
     "pytest>=7.0",
     "ruff",
@@ -44,7 +44,7 @@ Documentation = "https://github.com/AlexAndrewsAI/python-package-template#readme
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.version]
+[tool.hatch.version]  # Configures hatch to read version from __init__.py
 path = "python_package_template/__init__.py"
 
 [tool.uv]
@@ -53,18 +53,32 @@ path = "python_package_template/__init__.py"
 line-length = 88
 target-version = "py310"
 [tool.ruff.lint]
-select = ["E", "F", "W", "D", "S", "B", "I", "C4", "PT", "UP", "ARG", "RUF", "SIM"]
-ignore = ["D203", "D213"]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes (undefined names, unused imports)
+    "W",   # pycodestyle warnings
+    "D",   # pydocstyle (docstring conventions)
+    "S",   # flake8-bandit (security checks)
+    "B",   # flake8-bugbear (common bugs)
+    "I",   # isort (import sorting)
+    "C4",  # flake8-comprehensions (comprehension optimizations)
+    "PT",  # flake8-pytest-style (pytest conventions)
+    "UP",  # pyupgrade (modernize Python syntax)
+    "ARG", # flake8-unused-arguments (unused function arguments)
+    "RUF", # ruff-specific rules
+    "SIM", # flake8-simplify (code simplification)
+]
+ignore = ["D203", "D213"]  # Ignore conflicting docstring style rules (one-blank-line-before-class vs multi-line-summary)
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101"]
+"tests/**" = ["S101"]  # Allow assert statements in tests
 
 
 [tool.mypy]
 python_version = "3.10"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
+warn_return_any = true  # Warn when returning Any from a function
+warn_unused_configs = true  # Warn about unused mypy configuration
+disallow_untyped_defs = true  # Require type hints on all function definitions
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
