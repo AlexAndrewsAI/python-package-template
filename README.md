@@ -125,19 +125,37 @@ uv run mypy python_package_template
 
 ```
 python-package-template/
+├── AGENTS.md
 ├── .gitignore
 ├── pyproject.toml
-├── README.md
-├── python_package_template/
-│   ├── __init__.py
+├── python_package_template
 │   ├── cli.py
 │   ├── config.py
-│   └── hello.py
-└── tests/
-    ├── __init__.py
-    └── test_hello.py
-
+│   ├── hello.py
+│   └── __init__.py
+├── README.md
+├── tests
+│   ├── __init__.py
+│   └── test_hello.py
+└── uv.lock
 ```
+
+## Agent Instructions
+
+This template includes two agent instruction files for different workflows:
+
+### AGENTS.md
+Complete instructions for an AI agent with full automation. The agent automatically runs `pytest`, `ruff check`, and `mypy` after code changes to validate quality before handoff.
+
+**Best for:** Fully autonomous workflows where the agent handles all validation.
+
+### AGENTS_MANUAL_CHECKS.md
+Streamlined instructions that skip automated validation tools to reduce token usage. The agent writes code with quality standards in mind, but you manually run `pytest`, `ruff check`, and `mypy` for final validation.
+
+**Best for:** Cost-conscious workflows or when you prefer manual control over validation timing.
+
+Both files enforce the same code standards and project structure—only the automation scope differs.
+
 
 ## Features
 
