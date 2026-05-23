@@ -7,6 +7,8 @@ import logging
 
 from python_package_template.config import Config
 
+logger = logging.getLogger(__name__)
+
 
 class HelloWorld:
     """A simple greeting class.
@@ -14,12 +16,13 @@ class HelloWorld:
     Greets a name specified in the configuration.
     """
 
-    def __init__(self, config: Config | None = None):
+    def __init__(self, config: Config | None = None) -> None:
         """Initialize the HelloWorld instance.
 
         Args:
             config: Optional configuration object. If not provided,
                    a default Config instance will be created.
+
         """
         if config is None:
             config = Config()
@@ -30,6 +33,7 @@ class HelloWorld:
 
         Returns:
             A greeting string with the configured name.
+
         """
-        logging.info(f"hello {self.config.name}")
+        logger.info("hello %s", self.config.name)
         return f"Hello, {self.config.name}!"

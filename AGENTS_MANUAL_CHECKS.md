@@ -1,4 +1,4 @@
-# Agent Instructions: python-package-template
+# Agent Instructions: python-package-template (Token-Efficient)
 
 ## Quick Start
 1. **Setup:** Run `uv sync --dev` before major work sessions
@@ -28,7 +28,7 @@ pyproject.toml           (Dependencies & tool config)
 ## Essential Directives
 
 ### Code Standards
-- **Type Hints:** Required on ALL function signatures and class members. Enforce strictly with mypy.
+- **Type Hints:** Required on ALL function signatures and class members. Write code that will pass mypy.
 - **Docstrings:** Google-style format for all public APIs.
 - **Logging:** Use `logging` module only; never `print()`.
 - **Relative Paths:** Never use absolute paths in code.
@@ -40,7 +40,7 @@ pyproject.toml           (Dependencies & tool config)
 
 ### Testing & Quality
 - **Test Coverage:** Every code change requires corresponding tests in `tests/`.
-- **Validation Before Commit:** Run the full suite: `uv run pytest`, `uv run ruff check .`, `uv run mypy .`.
+- **Manual Validation:** After development is complete, **you will manually run** the full validation suite for final checks.
 
 ### Operational Constraints
 - **No Interactive Prompts:** Mock or bypass any interactive commands.
@@ -50,12 +50,12 @@ pyproject.toml           (Dependencies & tool config)
 ### File Maintenance
 - **Keep Instructions Current:** Update "Tech Stack," "Project Structure," and "Workflow Commands" if `pyproject.toml`, structure, or core logic changes.
 
-## Workflow Commands
+## Workflow Commands (Run Manually)
 ```bash
 uv sync --dev                           # Install/sync all dependencies
-uv run pytest                           # Run tests
-uv run ruff check .                     # Lint
-uv run ruff format .                    # Auto-format
-uv run mypy .                           # Type check
+uv run pytest                           # Run tests (USER RUNS)
+uv run ruff check .                     # Lint (USER RUNS)
+uv run ruff format .                    # Auto-format (USER RUNS)
+uv run mypy .                           # Type check (USER RUNS)
 uv run python -m python_package_template.cli hello  # Test CLI
 ```

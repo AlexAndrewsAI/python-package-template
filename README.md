@@ -42,11 +42,11 @@ from python_package_template.config import Config
 
 # Create with default name
 hello = HelloWorld()
-print(hello.greet())  # Output: Hello, World!
+greeting = hello.greet() # Hello, World!
 
 # Create with custom name
 hello = HelloWorld(Config(name="Alice"))
-print(hello.greet())  # Output: Hello, Alice!
+personal_greeting = hello.greet() # Hello, Alice!
 ```
 
 ### Configuration
@@ -61,9 +61,6 @@ config = Config()
 
 # Create with custom name
 config = Config(name="Alice")
-
-# Access the name
-print(config.name)  # Output: Alice
 ```
 
 ### Command Line Interface
@@ -71,26 +68,25 @@ print(config.name)  # Output: Alice
 The package includes a CLI tool built with **typer**:
 
 ```bash
+# Show version
+uv run hello-world --version
+
 # Run the CLI with default name
-uv run python -m python_package_template.cli hello
+uv run hello-world hello
 
 # Greet a specific name
-uv run python -m python_package_template.cli hello --name Alice
+uv run hello-world hello --name Alice
 
 # Show help
-uv run python -m python_package_template.cli hello --help
+uv run hello-world hello --help
 ```
-
-The CLI supports the following options:
-- `--name, -n TEXT`: Name to greet (default: World)
-- `--help, -h`: Show help message
 
 ## Development
 
 ### Install Dev Dependencies
 
 ```bash
-uv sync
+uv sync --dev
 ```
 
 This installs all dependencies and dev tools (pytest, ruff, mypy).
@@ -101,43 +97,59 @@ This installs all dependencies and dev tools (pytest, ruff, mypy).
 # Run all tests
 uv run pytest
 
-# Run with verbose output
-uv run pytest -v
-
 # Run specific test
 uv run pytest tests/test_hello.py::test_default_name
-
-# Show print statements during tests
-uv run pytest -s
 ```
 
 ### Code Quality
 
 ```bash
 # Lint code
-uv run ruff check python_package_template tests
+uv run ruff check
+uv run ruff format
 
 # Type check
-uv run mypy python_package_template
+uv run mypy .
 ```
 
 ## Project Structure
 
+- generate using `git ls-tree -r --name-only HEAD | tree --fromfile`
 ```
 python-package-template/
+├── AGENTS.md
 ├── .gitignore
 ├── pyproject.toml
-├── README.md
-├── python_package_template/
-│   ├── __init__.py
+├── python_package_template
 │   ├── cli.py
 │   ├── config.py
-│   └── hello.py
-└── tests/
-    ├── __init__.py
-    └── test_hello.py
-
+│   ├── hello.py
+│   └── __init__.py
+├── README.md
+├── tests
+│   ├── __init__.py
+│   └── test_hello.py
+└── uv.lock
 ```
+
+
+
+## Agent Instructions
+
+This template includes two agent instruction files for different workflows:
+
+### AGENTS.md
+Complete instructions for an AI agent with full automation. The agent automatically runs `pytest`, `ruff check`, and `mypy` after code changes to validate quality before handoff.
+
+**Best for:** Fully autonomous workflows where the agent handles all validation.
+
+### AGENTS_MANUAL_CHECKS.md
+Streamlined instructions that skip automated validation tools to reduce token usage. The agent writes code with quality standards in mind, but you manually run `pytest`, `ruff check`, and `mypy` for final validation.
+
+**Best for:** Cost-conscious workflows or when you prefer manual control over validation timing.
+
+Both files enforce the same code standards and project structure—only the automation scope differs.
+
 
 ## Features
 
