@@ -2,6 +2,7 @@ REVIEW.md
 
 # General
 *.lock
+!uv.lock
 
 # AI IDEs & Editors
 .aider/

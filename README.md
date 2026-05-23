@@ -117,6 +117,7 @@ uv run mypy .
 
 ## Project Structure
 
+- generate using `git ls-tree -r --name-only HEAD | tree --fromfile`
 ```
 python-package-template/
 ├── AGENTS.md
@@ -133,6 +134,8 @@ python-package-template/
 │   └── test_hello.py
 └── uv.lock
 ```
+
+
 
 ## Agent Instructions
 
