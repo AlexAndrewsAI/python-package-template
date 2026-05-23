@@ -12,7 +12,7 @@ class Config(BaseModel):
     Attributes:
         name: The name to greet. Defaults to "World".
     """
+
     name: str = Field(default="World", description="The name to greet")
 
     model_config = {"title": "Hello World Config"}
-

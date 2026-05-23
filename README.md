@@ -72,17 +72,21 @@ The package includes a CLI tool built with **typer**:
 
 ```bash
 # Run the CLI with default name
-uv run python -m python_package_template.cli hello
+uv run hello-world hello
 
 # Greet a specific name
-uv run python -m python_package_template.cli hello --name Alice
+uv run hello-world hello --name Alice
 
 # Show help
-uv run python -m python_package_template.cli hello --help
+uv run hello-world hello --help
+
+# Show version
+uv run hello-world hello --version
 ```
 
 The CLI supports the following options:
 - `--name, -n TEXT`: Name to greet (default: World)
+- `--version, -V`: Show the version and exit
 - `--help, -h`: Show help message
 
 ## Development
@@ -90,7 +94,7 @@ The CLI supports the following options:
 ### Install Dev Dependencies
 
 ```bash
-uv sync
+uv sync --dev
 ```
 
 This installs all dependencies and dev tools (pytest, ruff, mypy).
@@ -101,24 +105,19 @@ This installs all dependencies and dev tools (pytest, ruff, mypy).
 # Run all tests
 uv run pytest
 
-# Run with verbose output
-uv run pytest -v
-
 # Run specific test
 uv run pytest tests/test_hello.py::test_default_name
-
-# Show print statements during tests
-uv run pytest -s
 ```
 
 ### Code Quality
 
 ```bash
 # Lint code
-uv run ruff check python_package_template tests
+uv run ruff check
+uv run ruff format
 
 # Type check
-uv run mypy python_package_template
+uv run mypy .
 ```
 
 ## Project Structure

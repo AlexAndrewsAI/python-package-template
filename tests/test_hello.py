@@ -1,5 +1,4 @@
-"""Tests for the hello module.
-"""
+"""Tests for the hello module."""
 
 import logging
 
