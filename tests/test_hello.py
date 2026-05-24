@@ -3,6 +3,7 @@
 import logging
 
 import pytest
+from pydantic import ValidationError
 from typer.testing import CliRunner
 
 from python_package_template import Config, HelloWorld
@@ -39,6 +40,12 @@ def test_custom_name(caplog: pytest.LogCaptureFixture) -> None:
     assert len(caplog.records) == 1
     assert caplog.records[0].message == "hello Alice"
     assert caplog.records[0].levelname == "INFO"
+
+
+def test_empty_name_validation() -> None:
+    """Test that Config validates against empty names."""
+    with pytest.raises(ValidationError, match="at least 1 character"):
+        Config(name="")
 
 
 # CLI Tests
@@ -81,7 +88,6 @@ def test_cli_version_short() -> None:
 
 
 def test_cli_hello_empty_name() -> None:
-    """Test CLI hello command with empty string name."""
+    """Test CLI hello command with empty string name raises validation error."""
     result = runner.invoke(app, ["hello", "--name", ""])
-    assert result.exit_code == 0
-    assert "Hello, !" in result.output
+    assert result.exit_code != 0
