@@ -39,24 +39,13 @@ def hello(
     name: str = typer.Option(
         "World", "--name", "-n", help="Name to greet (default: World)"
     ),
-    version: bool = typer.Option(
-        False,
-        "--version",
-        "-V",
-        help="Show the version and exit.",
-        is_eager=True,
-    ),
 ) -> None:
     """Greet the specified name.
 
     Args:
         name: The name to greet.
-        version: Show version and exit.
 
     """
-    if version:
-        typer.echo(f"python-package-template version: {__version__}")
-        raise typer.Exit()
     config = Config(name=name)
     hello_world = HelloWorld(config)
     greeting = hello_world.greet()

@@ -80,13 +80,6 @@ def test_cli_version_short() -> None:
     assert "python-package-template version:" in result.output
 
 
-def test_cli_hello_version() -> None:
-    """Test CLI hello subcommand --version flag."""
-    result = runner.invoke(app, ["hello", "--version"])
-    assert result.exit_code == 0
-    assert "python-package-template version:" in result.output
-
-
 def test_cli_hello_empty_name() -> None:
     """Test CLI hello command with empty string name."""
     result = runner.invoke(app, ["hello", "--name", ""])
