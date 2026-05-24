@@ -4,7 +4,7 @@ dynamic = ["version"]  # Version is read from __init__.py by hatch
 description = "A simple package using pydantic"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "AlexAndrewsAI", email = "alex.andrews.ai@protonmail.com"}
 ]
@@ -89,6 +89,7 @@ addopts = "--cov=python_package_template --cov-report=term-missing --cov-fail-un
 [tool.coverage.run]
 source = ["python_package_template"]
 omit = []
+parallel = true
 
 [tool.coverage.report]
 exclude_lines = [

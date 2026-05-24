@@ -104,3 +104,10 @@ def test_cli_hello_empty_name() -> None:
     """Test CLI hello command with empty string name raises validation error."""
     result = runner.invoke(app, ["hello", "--name", ""])
     assert result.exit_code != 0
+
+
+def test_main_entry_point() -> None:
+    """Test that __main__.py can be imported and provides the app."""
+    from python_package_template import __main__
+
+    assert hasattr(__main__, "app")

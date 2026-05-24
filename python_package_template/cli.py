@@ -31,7 +31,7 @@ def main(
     ),
 ) -> None:
     """Python package template CLI."""
-    pass
+    ...
 
 
 @app.command()
