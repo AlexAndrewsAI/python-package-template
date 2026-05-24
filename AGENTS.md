@@ -57,5 +57,5 @@ uv run pytest                           # Run tests
 uv run ruff check .                     # Lint
 uv run ruff format .                    # Auto-format
 uv run mypy .                           # Type check
-uv run python -m python_package_template.cli hello  # Test CLI
+uv run hello-world hello  # Test CLI
 ```

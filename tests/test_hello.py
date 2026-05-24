@@ -48,6 +48,19 @@ def test_empty_name_validation() -> None:
         Config(name="")
 
 
+def test_config_frozen_immutability() -> None:
+    """Test that Config is frozen and cannot be modified after creation."""
+    config = Config(name="Alice")
+    with pytest.raises(ValidationError, match="Instance is frozen"):
+        config.name = "Bob"
+
+
+def test_config_invalid_type() -> None:
+    """Test that Config validates against invalid types."""
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
+        Config(name=123)  # type: ignore[arg-type]
+
+
 # CLI Tests
 runner = CliRunner()
 

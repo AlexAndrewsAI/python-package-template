@@ -57,5 +57,5 @@ uv run pytest                           # Run tests (USER RUNS)
 uv run ruff check .                     # Lint (USER RUNS)
 uv run ruff format .                    # Auto-format (USER RUNS)
 uv run mypy .                           # Type check (USER RUNS)
-uv run python -m python_package_template.cli hello  # Test CLI
+uv run hello-world hello  # Test CLI
 ```
