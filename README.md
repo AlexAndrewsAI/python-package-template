@@ -24,12 +24,28 @@ This package is intentionally simple to provide a clean starting point for your 
 
 ### Setup
 
-Clone the repository and install dependencies:
+**Option 1: Use this template (recommended)**
+
+Visit https://github.com/AlexAndrewsAI/python-package-template and click the green "Use this template" button to create your own repository. Then clone your new repository:
+
+```bash
+cd your-repo-name
+uv sync
+```
+
+**Option 2: Clone directly**
 
 ```bash
 git clone https://github.com/AlexAndrewsAI/python-package-template.git
 cd python-package-template  
 uv sync
+```
+
+To install the package in editable mode (recommended for development) and test the CLI:
+
+```bash
+uv pip install -e .
+hello-world --version
 ```
 
 ## Usage

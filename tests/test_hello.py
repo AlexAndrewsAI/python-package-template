@@ -3,6 +3,7 @@
 import logging
 
 import pytest
+from pydantic import ValidationError
 from typer.testing import CliRunner
 
 from python_package_template import Config, HelloWorld
@@ -39,6 +40,25 @@ def test_custom_name(caplog: pytest.LogCaptureFixture) -> None:
     assert len(caplog.records) == 1
     assert caplog.records[0].message == "hello Alice"
     assert caplog.records[0].levelname == "INFO"
+
+
+def test_empty_name_validation() -> None:
+    """Test that Config validates against empty names."""
+    with pytest.raises(ValidationError, match="at least 1 character"):
+        Config(name="")
+
+
+def test_config_frozen_immutability() -> None:
+    """Test that Config is frozen and cannot be modified after creation."""
+    config = Config(name="Alice")
+    with pytest.raises(ValidationError, match="Instance is frozen"):
+        config.name = "Bob"
+
+
+def test_config_invalid_type() -> None:
+    """Test that Config validates against invalid types."""
+    with pytest.raises(ValidationError, match="Input should be a valid string"):
+        Config(name=123)  # type: ignore[arg-type]
 
 
 # CLI Tests
@@ -80,15 +100,14 @@ def test_cli_version_short() -> None:
     assert "python-package-template version:" in result.output
 
 
-def test_cli_hello_version() -> None:
-    """Test CLI hello subcommand --version flag."""
-    result = runner.invoke(app, ["hello", "--version"])
-    assert result.exit_code == 0
-    assert "python-package-template version:" in result.output
-
-
 def test_cli_hello_empty_name() -> None:
-    """Test CLI hello command with empty string name."""
+    """Test CLI hello command with empty string name raises validation error."""
     result = runner.invoke(app, ["hello", "--name", ""])
-    assert result.exit_code == 0
-    assert "Hello, !" in result.output
+    assert result.exit_code != 0
+
+
+def test_main_entry_point() -> None:
+    """Test that __main__.py can be imported and provides the app."""
+    from python_package_template import __main__
+
+    assert hasattr(__main__, "app")

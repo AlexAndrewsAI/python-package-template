@@ -45,7 +45,7 @@ pyproject.toml           (Dependencies & tool config)
 ### Operational Constraints
 - **No Interactive Prompts:** Mock or bypass any interactive commands.
 - **No Git Operations:** Don't stage/commit unless explicitly requested.
-- **Code Review Mode:** Analyze only; record findings in `./REVIEW.md` without making modifications.
+- **Code Review Mode:** Analyze only; record findings in `./REVIEW.md` without making modifications. At the top of the review, identify the reviewer including the name of the IDE/CLI used and the primary model that performed the review.
 
 ### File Maintenance
 - **Keep Instructions Current:** Update "Tech Stack," "Project Structure," and "Workflow Commands" if `pyproject.toml`, structure, or core logic changes.
@@ -57,5 +57,5 @@ uv run pytest                           # Run tests (USER RUNS)
 uv run ruff check .                     # Lint (USER RUNS)
 uv run ruff format .                    # Auto-format (USER RUNS)
 uv run mypy .                           # Type check (USER RUNS)
-uv run python -m python_package_template.cli hello  # Test CLI
+uv run hello-world hello  # Test CLI
 ```

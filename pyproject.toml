@@ -4,7 +4,7 @@ dynamic = ["version"]  # Version is read from __init__.py by hatch
 description = "A simple package using pydantic"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "AlexAndrewsAI", email = "alex.andrews.ai@protonmail.com"}
 ]
@@ -30,6 +30,7 @@ dev = [
     "pytest>=7.0",
     "ruff",
     "mypy",
+    "pytest-cov>=7.1.0",
 ]
 
 [project.scripts]
@@ -83,3 +84,16 @@ disallow_untyped_defs = true  # Require type hints on all function definitions
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--cov=python_package_template --cov-report=term-missing --cov-fail-under=80"
+
+[tool.coverage.run]
+source = ["python_package_template"]
+omit = []
+parallel = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
