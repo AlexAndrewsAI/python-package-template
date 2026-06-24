@@ -112,6 +112,7 @@ def test_cli_hello_empty_name() -> None:
     """Test CLI hello command with empty string name raises validation error."""
     result = runner.invoke(app, ["hello", "--name", ""])
     assert result.exit_code != 0
+    assert "Error: Invalid input" in result.output
 
 
 def test_main_entry_point() -> None:

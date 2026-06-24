@@ -4,6 +4,7 @@ Provides a typer-based CLI for the package.
 """
 
 import typer
+from pydantic import ValidationError
 
 from python_package_template import __version__
 from python_package_template.config import DEFAULT_CONFIG, Config
@@ -46,7 +47,11 @@ def hello(
         name: The name to greet.
 
     """
-    config = DEFAULT_CONFIG if name == "World" else Config(name=name)
+    try:
+        config = DEFAULT_CONFIG if name == "World" else Config(name=name)
+    except ValidationError as e:
+        typer.echo(f"Error: Invalid input - {e}", err=True)
+        raise typer.Exit(code=1) from None
     hello_world = HelloWorld(config)
     greeting = hello_world.greet()
     typer.echo(greeting)
