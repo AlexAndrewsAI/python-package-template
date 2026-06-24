@@ -6,7 +6,7 @@ Provides a typer-based CLI for the package.
 import typer
 
 from python_package_template import __version__
-from python_package_template.config import Config
+from python_package_template.config import DEFAULT_CONFIG, Config
 from python_package_template.hello import HelloWorld
 
 app = typer.Typer(help="Python package template CLI")
@@ -46,7 +46,7 @@ def hello(
         name: The name to greet.
 
     """
-    config = Config(name=name)
+    config = DEFAULT_CONFIG if name == "World" else Config(name=name)
     hello_world = HelloWorld(config)
     greeting = hello_world.greet()
     typer.echo(greeting)
