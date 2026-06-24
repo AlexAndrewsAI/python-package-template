@@ -128,6 +128,18 @@ uv run ruff format
 uv run mypy .
 ```
 
+### Git Configuration
+
+The `.gitignore` file ignores all dot files (`.*`) by default, with exceptions for `.gitignore`, `.github`, and `.env.example`. If you want to commit other dot files (e.g., `.devin/`, `.cursor/`, etc.), add them to the negation list in `.gitignore`:
+
+```
+/.*
+!.gitignore
+!.github
+!.env.example
+!.myfile    # Add your custom dot files here
+```
+
 ## Project Structure
 
 - generate using `git ls-tree -r --name-only HEAD | tree --fromfile`
