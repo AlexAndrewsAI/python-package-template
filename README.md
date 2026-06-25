@@ -126,6 +126,9 @@ uv run ruff format
 
 # Type check
 uv run mypy .
+
+# Security audit
+uv run pip-audit
 ```
 
 ### Git Configuration
@@ -186,6 +189,7 @@ Both files enforce the same code standards and project structure—only the auto
 - **Configuration**: Externalize settings using the `Config` class
 - **Testing**: Comprehensive test suite with pytest
 - **Code quality**: Automated linting with ruff and type checking with mypy
+- **Security**: Dependency vulnerability scanning with pip-audit
 
 ## Python Best Practices Used
 

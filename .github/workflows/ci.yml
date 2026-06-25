@@ -33,3 +33,6 @@ jobs:
 
       - name: Type check with mypy
         run: uv run mypy .
+
+      - name: Security audit with pip-audit
+        run: uv run pip-audit

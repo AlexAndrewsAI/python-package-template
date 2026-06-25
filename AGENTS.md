@@ -14,6 +14,7 @@
 | Testing | pytest |
 | Linting & Formatting | ruff |
 | Type Checking | mypy |
+| Security Audit | pip-audit |
 
 ## Project Structure
 ```
@@ -40,7 +41,7 @@ pyproject.toml           (Dependencies & tool config)
 
 ### Testing & Quality
 - **Test Coverage:** Every code change requires corresponding tests in `tests/`.
-- **Validation Before Commit:** Run the full suite: `uv run pytest`, `uv run ruff check .`, `uv run mypy .`.
+- **Validation Before Commit:** Run the full suite: `uv run pytest`, `uv run ruff check .`, `uv run mypy .`, `uv run pip-audit`.
 
 ### Operational Constraints
 - **No Interactive Prompts:** Mock or bypass any interactive commands.
@@ -57,5 +58,6 @@ uv run pytest                           # Run tests
 uv run ruff check .                     # Lint
 uv run ruff format .                    # Auto-format
 uv run mypy .                           # Type check
+uv run pip-audit                        # Security audit
 uv run hello-world hello  # Test CLI
 ```
