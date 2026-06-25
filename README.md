@@ -1,19 +1,21 @@
 # python-package-template
 
-A basic template package demonstrating Python packaging best practices using **uv**, **pydantic**, and **pytest**.
+This package is intentionally simple to provide a clean starting point for your own projects.
 
 ## Overview
 
-This is a minimal but well-structured Python package that serves as a template for building larger projects. It demonstrates:
+The tools in this template were chosen to be simple, low friction, effective, and relatively comprehensive.
 
-- Modern Python packaging with `pyproject.toml`
-- Type hints and static type checking with **mypy**
-- Data validation using **pydantic**
-- Code linting with **ruff**
-- Testing with **pytest**
-- Dependency management with **uv**
+| Purpose            | Tool      |
+| ------------------ | --------- |
+| Package Management | uv        |
+| Data Validation    | pydantic  |
+| CLI Framework      | typer     |
+| Testing            | pytest    |
+| Code Quality       | ruff      |
+| Type Checking      | mypy      |
+| Security Audit     | pip-audit |
 
-This package is intentionally simple to provide a clean starting point for your own projects.
 
 ## Installation
 
@@ -126,6 +128,21 @@ uv run ruff format
 
 # Type check
 uv run mypy .
+
+# Security audit
+uv run pip-audit
+```
+
+### Git Configuration
+
+The `.gitignore` file ignores all dot files (`.*`) by default, with exceptions for `.gitignore`, `.github`, and `.env.example`. If you want to commit other dot files (e.g., `.devin/`, `.cursor/`, etc.), add them to the negation list in `.gitignore`:
+
+```
+/.*
+!.gitignore
+!.github
+!.env.example
+!.myfile    # Add your custom dot files here
 ```
 
 ## Project Structure
@@ -174,6 +191,7 @@ Both files enforce the same code standards and project structure—only the auto
 - **Configuration**: Externalize settings using the `Config` class
 - **Testing**: Comprehensive test suite with pytest
 - **Code quality**: Automated linting with ruff and type checking with mypy
+- **Security**: Dependency vulnerability scanning with pip-audit
 
 ## Python Best Practices Used
 
@@ -184,6 +202,7 @@ Both files enforce the same code standards and project structure—only the auto
 - ✅ **Configuration**: Externalized config using pydantic BaseModel
 - ✅ **Linting**: Code quality checks with ruff
 - ✅ **Dependency management**: Explicit dependencies in pyproject.toml
+- ✅ **Security**: Automated vulnerability scanning with pip-audit
 - ✅ **Python versions**: Supports Python 3.10+
 
 ## License

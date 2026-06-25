@@ -6,7 +6,7 @@ import pytest
 from pydantic import ValidationError
 from typer.testing import CliRunner
 
-from python_package_template import Config, HelloWorld
+from python_package_template import DEFAULT_CONFIG, Config, HelloWorld
 from python_package_template.cli import app
 
 
@@ -61,6 +61,14 @@ def test_config_invalid_type() -> None:
         Config(name=123)  # type: ignore[arg-type]
 
 
+def test_default_config_singleton() -> None:
+    """Test that DEFAULT_CONFIG is a proper singleton with default values."""
+    assert DEFAULT_CONFIG.name == "World"
+    # Verify it's the same object when accessed multiple times
+    from python_package_template.config import DEFAULT_CONFIG as default_config_again
+    assert DEFAULT_CONFIG is default_config_again
+
+
 # CLI Tests
 runner = CliRunner()
 
@@ -104,6 +112,7 @@ def test_cli_hello_empty_name() -> None:
     """Test CLI hello command with empty string name raises validation error."""
     result = runner.invoke(app, ["hello", "--name", ""])
     assert result.exit_code != 0
+    assert "Error: Invalid input" in result.output
 
 
 def test_main_entry_point() -> None:

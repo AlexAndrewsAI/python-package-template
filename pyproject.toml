@@ -31,6 +31,7 @@ dev = [
     "ruff",
     "mypy",
     "pytest-cov>=7.1.0",
+    "pip-audit",
 ]
 
 [project.scripts]
@@ -84,7 +85,7 @@ disallow_untyped_defs = true  # Require type hints on all function definitions
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=python_package_template --cov-report=term-missing --cov-fail-under=80"
+addopts = "--cov=python_package_template --cov-report=term-missing --cov-fail-under=95"
 
 [tool.coverage.run]
 source = ["python_package_template"]
