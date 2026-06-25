@@ -1,19 +1,21 @@
 # python-package-template
 
-A basic template package demonstrating Python packaging best practices using **uv**, **pydantic**, and **pytest**.
+This package is intentionally simple to provide a clean starting point for your own projects.
 
 ## Overview
 
-This is a minimal but well-structured Python package that serves as a template for building larger projects. It demonstrates:
+The tools in this template were chosen to be simple, low friction, effective, and relatively comprehensive.
 
-- Modern Python packaging with `pyproject.toml`
-- Type hints and static type checking with **mypy**
-- Data validation using **pydantic**
-- Code linting with **ruff**
-- Testing with **pytest**
-- Dependency management with **uv**
+| Purpose            | Tool      |
+| ------------------ | --------- |
+| Package Management | uv        |
+| Data Validation    | pydantic  |
+| CLI Framework      | typer     |
+| Testing            | pytest    |
+| Code Quality       | ruff      |
+| Type Checking      | mypy      |
+| Security Audit     | pip-audit |
 
-This package is intentionally simple to provide a clean starting point for your own projects.
 
 ## Installation
 
