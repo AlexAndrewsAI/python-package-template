@@ -29,7 +29,7 @@ pyproject.toml           (Dependencies & tool config)
 ## Essential Directives
 
 ### Code Standards
-- **Type Hints:** Required on ALL function signatures and class members. Enforce strictly with mypy.
+- **Type Hints:** Required on ALL function signatures and class members. Enforce strictly with mypy. Avoid using `# type: ignore` comments to suppress mypy errors; fix the underlying type issues instead.
 - **Docstrings:** Google-style format for all public APIs.
 - **Logging:** Use `logging` module only; never `print()`.
 - **Relative Paths:** Never use absolute paths in code.
