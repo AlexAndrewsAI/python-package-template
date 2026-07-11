@@ -15,6 +15,8 @@ The tools in this template were chosen to be simple, low friction, effective, an
 | Code Quality       | ruff      |
 | Type Checking      | mypy      |
 | Security Audit     | pip-audit |
+| Shell Script Lint  | shellcheck|
+| Git Hooks          | prek      |
 
 
 ## Installation
@@ -39,7 +41,7 @@ uv sync
 
 ```bash
 git clone https://github.com/AlexAndrewsAI/python-package-template.git
-cd python-package-template  
+cd python-package-template
 uv sync
 ```
 
@@ -133,6 +135,34 @@ uv run mypy .
 uv run pip-audit
 ```
 
+### Git Hooks with prek
+
+This template uses **prek** for managing pre-commit Git hooks that automatically run code quality checks before commits.
+
+**Install Git hooks (recommended):**
+
+```bash
+uv run prek install
+```
+
+This installs Git hooks that will automatically run the following checks on every commit:
+- pytest (tests)
+- ruff check (linting)
+- ruff format (formatting)
+- mypy (type checking)
+- pip-audit (security audit)
+- shellcheck (shell script linting)
+
+**Run hooks manually:**
+
+```bash
+# Run all hooks on all files
+uv run prek run --all-files
+
+# Run hooks on staged files only
+uv run prek run
+```
+
 ### Git Configuration
 
 The `.gitignore` file ignores all dot files (`.*`) by default, with exceptions for `.gitignore`, `.github`, and `.env.example`. If you want to commit other dot files (e.g., `.devin/`, `.cursor/`, etc.), add them to the negation list in `.gitignore`:
@@ -147,7 +177,6 @@ The `.gitignore` file ignores all dot files (`.*`) by default, with exceptions f
 
 ## Project Structure
 
-- generate using `git ls-tree -r --name-only HEAD | tree --fromfile`
 ```
 python-package-template/
 ├── AGENTS.md
@@ -192,6 +221,7 @@ Both files enforce the same code standards and project structure—only the auto
 - **Testing**: Comprehensive test suite with pytest
 - **Code quality**: Automated linting with ruff and type checking with mypy
 - **Security**: Dependency vulnerability scanning with pip-audit
+- **Shell script linting**: Shell script validation with shellcheck for `*.sh` and `*.bash` files
 
 ## Python Best Practices Used
 
@@ -203,6 +233,7 @@ Both files enforce the same code standards and project structure—only the auto
 - ✅ **Linting**: Code quality checks with ruff
 - ✅ **Dependency management**: Explicit dependencies in pyproject.toml
 - ✅ **Security**: Automated vulnerability scanning with pip-audit
+- ✅ **Shell script quality**: Shell script linting with shellcheck
 - ✅ **Python versions**: Supports Python 3.10+
 
 ## License

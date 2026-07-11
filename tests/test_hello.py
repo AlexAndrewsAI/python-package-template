@@ -66,6 +66,7 @@ def test_default_config_singleton() -> None:
     assert DEFAULT_CONFIG.name == "World"
     # Verify it's the same object when accessed multiple times
     from python_package_template.config import DEFAULT_CONFIG as default_config_again
+
     assert DEFAULT_CONFIG is default_config_again
 
 
@@ -116,7 +117,31 @@ def test_cli_hello_empty_name() -> None:
 
 
 def test_main_entry_point() -> None:
-    """Test that __main__.py can be imported and provides the app."""
-    from python_package_template import __main__
+    """Test that __main__.py can be invoked as python -m."""
+    from subprocess import run
+    from sys import executable
 
-    assert hasattr(__main__, "app")
+    result = run(
+        [executable, "-m", "python_package_template", "--version"],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0
+    assert "python-package-template version:" in result.stdout
+
+
+def test_main_app_invocation() -> None:
+    """Test that __main__.py covers the app() call in-process."""
+    from runpy import run_module
+    from sys import argv
+
+    import pytest
+
+    old_argv = argv[:]
+    argv[:] = ["python_package_template", "--version"]
+    try:
+        with pytest.raises(SystemExit) as exc_info:
+            run_module("python_package_template.__main__", run_name="__main__")
+        assert exc_info.value.code == 0
+    finally:
+        argv[:] = old_argv
