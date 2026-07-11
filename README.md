@@ -125,8 +125,8 @@ uv run pytest tests/test_hello.py::test_default_name
 
 ```bash
 # Lint code
-uv run ruff check
-uv run ruff format
+uv run ruff check .
+uv run ruff format .
 
 # Type check
 uv run mypy .
