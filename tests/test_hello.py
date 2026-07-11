@@ -133,15 +133,11 @@ def test_main_entry_point() -> None:
 def test_main_app_invocation() -> None:
     """Test that __main__.py covers the app() call in-process."""
     from runpy import run_module
-    from sys import argv
+    from unittest.mock import patch
 
     import pytest
 
-    old_argv = argv[:]
-    argv[:] = ["python_package_template", "--version"]
-    try:
+    with patch("sys.argv", ["python_package_template", "--version"]):
         with pytest.raises(SystemExit) as exc_info:
             run_module("python_package_template.__main__", run_name="__main__")
         assert exc_info.value.code == 0
-    finally:
-        argv[:] = old_argv

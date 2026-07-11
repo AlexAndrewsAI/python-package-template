@@ -4,13 +4,15 @@ Provides a typer-based CLI for the package.
 """
 
 import logging
+from importlib.metadata import version
 
 import typer
 from pydantic import ValidationError
 
-from python_package_template import __version__
 from python_package_template.config import DEFAULT_CONFIG, Config
 from python_package_template.hello import HelloWorld
+
+__version__ = version("python-package-template")
 
 logger = logging.getLogger(__name__)
 

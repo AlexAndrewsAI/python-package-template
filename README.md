@@ -186,7 +186,8 @@ python-package-template/
 │   ├── cli.py
 │   ├── config.py
 │   ├── hello.py
-│   └── __init__.py
+│   ├── __init__.py
+│   └── py.typed
 ├── README.md
 ├── tests
 │   ├── __init__.py
