@@ -46,6 +46,6 @@ jobs:
             echo "CHANGELOG.md has been updated."
           else
             echo "::error::CHANGELOG.md has not been updated for this branch."
-            echo "Please add your changes to CHANGELOG.md under the [Unreleased] section before merging."
+            echo "Please add your changes to CHANGELOG.md under the section '[version] - date - PR' before merging."
             exit 1
           fi

@@ -37,6 +37,12 @@ repos:
         pass_filenames: false
         always_run: true
 
+      - id: pymarkdownlnt
+        name: Lint Markdown with pymarkdownlnt
+        entry: uv run pymarkdown -c .pymarkdown.json scan
+        language: system
+        types: [markdown]
+
       - id: shellcheck
         name: Lint shell scripts with shellcheck
         entry: uv run shellcheck
