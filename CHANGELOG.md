@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Pre-commit hooks via prek with ruff, mypy, shellcheck, and standard pre-commit-hooks.
+- `py.typed` marker for PEP 561 type stub compliance.
+- CI matrix testing across Python 3.10–3.13.
+- CI step to verify `CHANGELOG.md` is updated on pull requests.
+
+### Changed
+
+- `cli.py`: use `importlib.metadata.version()` instead of importing `__version__` from package root to avoid double-importing `__init__.py`.
+
 ## [0.1.0] - 2026-06-24
 
 ### Added
