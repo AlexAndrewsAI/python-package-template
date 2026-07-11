@@ -5,7 +5,7 @@ Provides a simple greeting class that uses configuration.
 
 import logging
 
-from python_package_template.config import Config
+from python_package_template.config import DEFAULT_CONFIG, Config
 
 logger = logging.getLogger(__name__)
 
@@ -21,11 +21,11 @@ class HelloWorld:
 
         Args:
             config: Optional configuration object. If not provided,
-                   a default Config instance will be created.
+                   the default singleton config will be used.
 
         """
         if config is None:
-            config = Config()
+            config = DEFAULT_CONFIG
         self.config = config
 
     def greet(self) -> str:
