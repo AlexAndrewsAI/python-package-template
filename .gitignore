@@ -4,11 +4,15 @@ REVIEW.md
 *.lock
 !uv.lock
 
+# Exclude all dot files/directories by default, then whitelist the ones we need.
+# There are too many possible .* files depending on which LLM agents and tools
+# you happen to use, so a whitelist approach is simpler and safer.
 /.*
 !.gitignore
 !.github
 !.env.example
-
+!.pre-commit-config.yaml
+!.pymarkdown.json
 
 # AI Agent Outputs & State Files
 agent_artifacts/

@@ -3,12 +3,18 @@
 Provides a typer-based CLI for the package.
 """
 
+import logging
+
 import typer
 from pydantic import ValidationError
 
 from python_package_template import __version__
 from python_package_template.config import DEFAULT_CONFIG, Config
 from python_package_template.hello import HelloWorld
+
+logger = logging.getLogger(__name__)
+
+__all__ = ["app"]
 
 app = typer.Typer(help="Python package template CLI")
 
@@ -50,6 +56,7 @@ def hello(
     try:
         config = DEFAULT_CONFIG if name == "World" else Config(name=name)
     except ValidationError as e:
+        logger.debug("Validation error: %s", e)
         typer.echo(f"Error: Invalid input - {e}", err=True)
         raise typer.Exit(code=1) from None
     hello_world = HelloWorld(config)

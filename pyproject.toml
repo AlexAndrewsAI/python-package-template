@@ -1,6 +1,6 @@
 [project]
 name = "python-package-template"
-dynamic = ["version"]  # Version is read from __init__.py by hatch
+version = "0.1.1"
 description = "A simple package using pydantic"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -17,7 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",  # Added
+    "Programming Language :: Python :: 3.13",
 ]
 
 dependencies = [
@@ -32,6 +32,9 @@ dev = [
     "mypy",
     "pytest-cov>=7.1.0",
     "pip-audit",
+    "prek>=0.4.8",
+    "pymarkdownlnt",
+    "shellcheck-py>=0.11.0.1",
 ]
 
 [project.scripts]
@@ -45,9 +48,6 @@ Documentation = "https://github.com/AlexAndrewsAI/python-package-template#readme
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.hatch.version]  # Configures hatch to read version from __init__.py
-path = "python_package_template/__init__.py"
 
 [tool.uv]
 

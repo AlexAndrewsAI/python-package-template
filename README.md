@@ -1,10 +1,12 @@
 # python-package-template
 
-This package is intentionally simple to provide a clean starting point for your own projects.
+This package is intentionally simple to provide a clean
+starting point for your own projects.
 
 ## Overview
 
-The tools in this template were chosen to be simple, low friction, effective, and relatively comprehensive.
+The tools in this template were chosen to be simple,
+low friction, effective, and relatively comprehensive.
 
 | Purpose            | Tool      |
 | ------------------ | --------- |
@@ -15,7 +17,9 @@ The tools in this template were chosen to be simple, low friction, effective, an
 | Code Quality       | ruff      |
 | Type Checking      | mypy      |
 | Security Audit     | pip-audit |
-
+| Markdown Lint      | pymarkdownlnt |
+| Shell Script Lint  | shellcheck |
+| Git Hooks          | prek      |
 
 ## Installation
 
@@ -26,24 +30,27 @@ The tools in this template were chosen to be simple, low friction, effective, an
 
 ### Setup
 
-**Option 1: Use this template (recommended)**
+#### Option 1: Use this template (recommended)
 
-Visit https://github.com/AlexAndrewsAI/python-package-template and click the green "Use this template" button to create your own repository. Then clone your new repository:
+Visit <https://github.com/AlexAndrewsAI/python-package-template>
+and click the green "Use this template" button to create
+your own repository. Then clone your new repository:
 
 ```bash
 cd your-repo-name
 uv sync
 ```
 
-**Option 2: Clone directly**
+#### Option 2: Clone directly
 
 ```bash
 git clone https://github.com/AlexAndrewsAI/python-package-template.git
-cd python-package-template  
+cd python-package-template
 uv sync
 ```
 
-To install the package in editable mode (recommended for development) and test the CLI:
+To install the package in editable mode (recommended for
+development) and test the CLI:
 
 ```bash
 uv pip install -e .
@@ -107,7 +114,8 @@ uv run hello-world hello --help
 uv sync --dev
 ```
 
-This installs all dependencies and dev tools (pytest, ruff, mypy).
+This installs all dependencies and dev tools
+(pytest, ruff, mypy).
 
 ### Run Tests
 
@@ -123,8 +131,8 @@ uv run pytest tests/test_hello.py::test_default_name
 
 ```bash
 # Lint code
-uv run ruff check
-uv run ruff format
+uv run ruff check .
+uv run ruff format .
 
 # Type check
 uv run mypy .
@@ -133,11 +141,47 @@ uv run mypy .
 uv run pip-audit
 ```
 
+### Git Hooks with prek
+
+This template uses **prek** for managing pre-commit
+Git hooks that automatically run code quality checks
+before commits.
+
+**Install Git hooks (recommended):**
+
+```bash
+uv run prek install
+```
+
+This installs Git hooks that will automatically run
+the following checks on every commit:
+
+- pytest (tests)
+- ruff check (linting)
+- ruff format (formatting)
+- mypy (type checking)
+- pymarkdownlnt (markdown linting)
+- shellcheck (shell script linting)
+
+**Run hooks manually:**
+
+```bash
+# Run all hooks on all files
+uv run prek run --all-files
+
+# Run hooks on staged files only
+uv run prek run
+```
+
 ### Git Configuration
 
-The `.gitignore` file ignores all dot files (`.*`) by default, with exceptions for `.gitignore`, `.github`, and `.env.example`. If you want to commit other dot files (e.g., `.devin/`, `.cursor/`, etc.), add them to the negation list in `.gitignore`:
+The `.gitignore` file ignores all dot files (`.*`)
+by default, with exceptions for `.gitignore`,
+`.github`, and `.env.example`. If you want to commit
+other dot files (e.g., `.devin/`, `.cursor/`, etc.),
+add them to the negation list in `.gitignore`:
 
-```
+```text
 /.*
 !.gitignore
 !.github
@@ -147,17 +191,18 @@ The `.gitignore` file ignores all dot files (`.*`) by default, with exceptions f
 
 ## Project Structure
 
-- generate using `git ls-tree -r --name-only HEAD | tree --fromfile`
-```
+```text
 python-package-template/
 ├── AGENTS.md
+├── CHANGELOG.md
 ├── .gitignore
 ├── pyproject.toml
 ├── python_package_template
 │   ├── cli.py
 │   ├── config.py
 │   ├── hello.py
-│   └── __init__.py
+│   ├── __init__.py
+│   └── py.typed
 ├── README.md
 ├── tests
 │   ├── __init__.py
@@ -165,44 +210,70 @@ python-package-template/
 └── uv.lock
 ```
 
-
-
 ## Agent Instructions
 
-This template includes two agent instruction files for different workflows:
+This template includes two agent instruction files
+for different workflows:
 
 ### AGENTS.md
-Complete instructions for an AI agent with full automation. The agent automatically runs `pytest`, `ruff check`, and `mypy` after code changes to validate quality before handoff.
 
-**Best for:** Fully autonomous workflows where the agent handles all validation.
+Complete instructions for an AI agent with full
+automation. The agent automatically runs `pytest`,
+`ruff check`, and `mypy` after code changes to
+validate quality before handoff.
+
+**Best for:** Fully autonomous workflows where the
+agent handles all validation.
 
 ### AGENTS_MANUAL_CHECKS.md
-Streamlined instructions that skip automated validation tools to reduce token usage. The agent writes code with quality standards in mind, but you manually run `pytest`, `ruff check`, and `mypy` for final validation.
 
-**Best for:** Cost-conscious workflows or when you prefer manual control over validation timing.
+Streamlined instructions that skip automated
+validation tools to reduce token usage. The agent
+writes code with quality standards in mind, but you
+manually run `pytest`, `ruff check`, and `mypy` for
+final validation.
 
-Both files enforce the same code standards and project structure—only the automation scope differs.
+**Best for:** Cost-conscious workflows or when you
+prefer manual control over validation timing.
 
+Both files enforce the same code standards and project
+structure—only the automation scope differs.
 
 ## Features
 
-- **Type hints**: Full type annotations for better IDE support and mypy compatibility
-- **Pydantic validation**: Runtime type validation and serialization
-- **Configuration**: Externalize settings using the `Config` class
+- **Type hints**: Full type annotations for better
+  IDE support and mypy compatibility
+- **Pydantic validation**: Runtime type validation
+  and serialization
+- **Configuration**: Externalize settings using the
+  `Config` class
 - **Testing**: Comprehensive test suite with pytest
-- **Code quality**: Automated linting with ruff and type checking with mypy
-- **Security**: Dependency vulnerability scanning with pip-audit
+- **Code quality**: Automated linting with ruff and
+  type checking with mypy
+- **Security**: Dependency vulnerability scanning
+  with pip-audit
+- **Shell script linting**: Shell script validation
+  with shellcheck for `*.sh` and `*.bash` files
 
 ## Python Best Practices Used
 
-- ✅ **Type hints**: All functions and classes use type annotations
-- ✅ **Docstrings**: Clear descriptions of modules, classes, and functions
-- ✅ **Project structure**: Proper package layout with separation of concerns
-- ✅ **Testing**: Comprehensive test coverage with pytest
-- ✅ **Configuration**: Externalized config using pydantic BaseModel
+- ✅ **Type hints**: All functions and classes use
+  type annotations
+- ✅ **Docstrings**: Clear descriptions of modules,
+  classes, and functions
+- ✅ **Project structure**: Proper package layout
+  with separation of concerns
+- ✅ **Testing**: Comprehensive test coverage
+  with pytest
+- ✅ **Configuration**: Externalized config using
+  pydantic BaseModel
 - ✅ **Linting**: Code quality checks with ruff
-- ✅ **Dependency management**: Explicit dependencies in pyproject.toml
-- ✅ **Security**: Automated vulnerability scanning with pip-audit
+- ✅ **Dependency management**: Explicit dependencies
+  in pyproject.toml
+- ✅ **Security**: Automated vulnerability scanning
+  with pip-audit
+- ✅ **Shell script quality**: Shell script linting
+  with shellcheck
 - ✅ **Python versions**: Supports Python 3.10+
 
 ## License
@@ -211,7 +282,8 @@ MIT
 
 ## Contributing
 
-This is a template repository. Feel free to use it as a starting point for your own projects.
+This is a template repository. Feel free to use it
+as a starting point for your own projects.
 
 ## Author
 

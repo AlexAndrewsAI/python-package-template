@@ -3,6 +3,8 @@
 Provides configuration management using Pydantic models.
 """
 
+from typing import Final
+
 from pydantic import BaseModel, Field
 
 
@@ -20,4 +22,4 @@ class Config(BaseModel):
 
 
 # Singleton instance for default configuration
-DEFAULT_CONFIG = Config()
+DEFAULT_CONFIG: Final = Config()
