@@ -14,6 +14,8 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install uv
         uses: astral-sh/setup-uv@v4
@@ -36,3 +38,14 @@ jobs:
 
       - name: Security audit with pip-audit
         run: uv run pip-audit
+
+      - name: Check changelog updated
+        if: github.event_name == 'pull_request'
+        run: |
+          if git diff origin/main...HEAD --name-only | grep -q CHANGELOG.md; then
+            echo "CHANGELOG.md has been updated."
+          else
+            echo "::error::CHANGELOG.md has not been updated for this branch."
+            echo "Please add your changes to CHANGELOG.md under the [Unreleased] section before merging."
+            exit 1
+          fi
