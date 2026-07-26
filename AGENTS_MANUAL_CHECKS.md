@@ -78,6 +78,8 @@ pyproject.toml       (Dependencies & tool config)
 - **Keep Instructions Current:** Update "Tech Stack,"
   "Project Structure," and "Workflow Commands" if
   `pyproject.toml`, structure, or core logic changes.
+- **YAML Files:** Use `.yaml` extension for all YAML files
+  (e.g., `.github/workflows/ci.yaml` instead of `.yml`).
 
 ## Workflow Commands
 

@@ -80,6 +80,8 @@ pyproject.toml       (Dependencies & tool config)
   `pyproject.toml`, structure, or core logic changes.
 - **Pre-commit Config:** Keep `.pre-commit-config.yaml`
   in sync with CI workflow when test requirements change.
+- **YAML Files:** Use `.yaml` extension for all YAML files
+  (e.g., `.github/workflows/ci.yaml` instead of `.yml`).
 
 ## Workflow Commands
 
