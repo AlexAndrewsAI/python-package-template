@@ -22,7 +22,7 @@ app = typer.Typer(help="Python package template CLI")
 def version_callback(value: bool) -> None:
     """Handle the version flag callback."""
     if value:
-        typer.echo(f"python-package-template version: {__version__}")
+        typer.echo(f"hello-world {__version__}")
         raise typer.Exit()
 
 
