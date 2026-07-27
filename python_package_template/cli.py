@@ -22,7 +22,7 @@ app = typer.Typer(help="Python package template CLI")
 def version_callback(value: bool) -> None:
     """Handle the version flag callback."""
     if value:
-        typer.echo(f"python-package-template version: {__version__}")
+        typer.echo(f"hello-world {__version__}")
         raise typer.Exit()
 
 
@@ -54,7 +54,8 @@ def hello(
 
     """
     try:
-        config = DEFAULT_CONFIG if name == "World" else Config(name=name)
+        is_default = name == Config.model_fields["name"].default
+        config = DEFAULT_CONFIG if is_default else Config(name=name)
     except ValidationError as e:
         logger.debug("Validation error: %s", e)
         typer.echo(f"Error: Invalid input - {e}", err=True)
