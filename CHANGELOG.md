@@ -11,7 +11,7 @@ The format is based on
 ### Changed
 
 - Renamed CI workflow from `.yml` to `.yaml` for
-  consistent YAML extension usage.
+- consistent YAML extension usage.
 
 ## [0.1.1] - 2026-07-10 - #11 "Add python prek hooks for git pre-commit"
 
