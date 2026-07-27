@@ -71,45 +71,44 @@ def test_default_config_singleton() -> None:
 
 
 # CLI Tests
-runner = CliRunner()
 
 
-def test_cli_hello_default() -> None:
+def test_cli_hello_default(runner: CliRunner) -> None:
     """Test CLI hello command with default name."""
     result = runner.invoke(app, ["hello"])
     assert result.exit_code == 0
     assert "Hello, World!" in result.output
 
 
-def test_cli_hello_custom_name() -> None:
+def test_cli_hello_custom_name(runner: CliRunner) -> None:
     """Test CLI hello command with custom name."""
     result = runner.invoke(app, ["hello", "--name", "Alice"])
     assert result.exit_code == 0
     assert "Hello, Alice!" in result.output
 
 
-def test_cli_hello_short_option() -> None:
+def test_cli_hello_short_option(runner: CliRunner) -> None:
     """Test CLI hello command with short option."""
     result = runner.invoke(app, ["hello", "-n", "Bob"])
     assert result.exit_code == 0
     assert "Hello, Bob!" in result.output
 
 
-def test_cli_version() -> None:
+def test_cli_version(runner: CliRunner) -> None:
     """Test CLI --version flag."""
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
-    assert "python-package-template version:" in result.output
+    assert "hello-world" in result.output
 
 
-def test_cli_version_short() -> None:
+def test_cli_version_short(runner: CliRunner) -> None:
     """Test CLI -V short flag."""
     result = runner.invoke(app, ["-V"])
     assert result.exit_code == 0
-    assert "python-package-template version:" in result.output
+    assert "hello-world" in result.output
 
 
-def test_cli_hello_empty_name() -> None:
+def test_cli_hello_empty_name(runner: CliRunner) -> None:
     """Test CLI hello command with empty string name raises validation error."""
     result = runner.invoke(app, ["hello", "--name", ""])
     assert result.exit_code != 0
@@ -127,15 +126,13 @@ def test_main_entry_point() -> None:
         text=True,
     )
     assert result.returncode == 0
-    assert "python-package-template version:" in result.stdout
+    assert "hello-world" in result.stdout
 
 
 def test_main_app_invocation() -> None:
     """Test that __main__.py covers the app() call in-process."""
     from runpy import run_module
     from unittest.mock import patch
-
-    import pytest
 
     with patch("sys.argv", ["python_package_template", "--version"]):
         with pytest.raises(SystemExit) as exc_info:
