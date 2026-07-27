@@ -54,7 +54,8 @@ def hello(
 
     """
     try:
-        config = DEFAULT_CONFIG if name == "World" else Config(name=name)
+        is_default = name == Config.model_fields["name"].default
+        config = DEFAULT_CONFIG if is_default else Config(name=name)
     except ValidationError as e:
         logger.debug("Validation error: %s", e)
         typer.echo(f"Error: Invalid input - {e}", err=True)
